@@ -41,3 +41,7 @@ Enter queries in the search bar and retreive the results
 7. **NLTK Integration:** Leverages the power of NLTK for natural language processing tasks such as tokenization and stop word removal.
 8. **User-Friendly Interface:** Provides a clean and intuitive user interface for easy searching and article management.
 9. **Scalability:** Designed to handle large datasets and support future expansions and enhancements.
+
+## UI
+![image](https://github.com/SalmanSi/Search-Engine/assets/114280969/bff738bc-ee74-477a-b275-b8dcb15ffcc0)
+
