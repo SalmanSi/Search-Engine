@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 1em;
+            text-align: center;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative; /* Added positioning */
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            width: 70%;
+            padding: 8px;
+            margin-right: 10px;
+        }
+
+        button {
+            padding: 8px 16px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Style for "Add Articles" button */
+        .add-articles-btn {
+            position: absolute;
+            top: 20px;
+            right:60px; 
+            background-color: #4CAF50; /* Green color */
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Search Results</h1>
+    </header>
+
+    <main>
+        <a class="add-articles-btn" href="{% url 'add_content' %}">Add Articles</a>
+
+        <form action="" method="post">
+            {% csrf_token %}
+            <label for="query">Search:</label>
+            <input type="text" id="query" name="query" required>
+            <button type="submit">Search</button>
+        </form>
+
+        {% if urls_with_scores %}
+            <ul>
+                {% for entry in urls_with_scores %}
+                    <li>
+                        <strong>URL:</strong><a href="{{ entry.url }}" target="_blank">{{ entry.url }}</a>
+                        <br>
+                        <strong>Score:</strong> {{ entry.score }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No results found.</p>
+        {% endif %}
+    </main>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Content</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 1em;
+            text-align: center;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        input[type="file"] {
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 8px 16px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        p {
+            font-weight: bold;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Add Content</h1>
+    </header>
+
+    <main>
+        <form action="{% url 'add_content' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="jsonFile">Upload JSON File:</label>
+            <input type="file" id="jsonFile" name="jsonFile" accept=".json" required>
+            <button type="submit">Upload</button>
+        </form>
+
+        {% if json_file_path %}
+            <p>File uploaded successfully. Path: {{ json_file_path }}</p>
+        {% endif %}
+    </main>
+</body>
+<a href="{% url 'search_view' %}">Home</a>
+</html>
